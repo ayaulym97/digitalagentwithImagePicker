@@ -1,13 +1,19 @@
 import { createStackNavigator } from 'react-navigation';
-import { SignUp, CodeConfirm } from '../screens/auth';
+import { SignUpNew, CodeConfirm,CreatePin,RepeatPin } from '../screens/auth';
 const auth = createStackNavigator(
   {
     SignUp: {
-      screen: SignUp,
+      screen: SignUpNew,
     },
     CodeConfirm: {
       screen: CodeConfirm,
     },
+    CreatePin:{
+      screen:CreatePin
+    },
+    RepeatPin:{
+      screen:RepeatPin
+    }
   },
   {
     navigationOptions: {

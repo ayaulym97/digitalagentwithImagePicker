@@ -1,0 +1,10 @@
+{
+  "login": {
+    "welcome": "открыть",
+    "login_button": "открыть",
+    "signup_button": "открыть"
+  },
+  "user_profile": {
+    "title": "открыть"
+  }
+}

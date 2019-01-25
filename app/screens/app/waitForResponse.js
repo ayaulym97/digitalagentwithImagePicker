@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   Easing,
+  Platform,
   StyleSheet,
   AsyncStorage
 } from "react-native";
@@ -13,62 +14,48 @@ import { Footer } from "../../components";
 import { Theme } from "../../uitls/theme";
 import { base_url } from "../../config/const";
 import { StylePanel } from "../../uitls/styles";
+import firebase from "react-native-firebase";
 export default class WaitForResponse extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      remainingTime: 59,
-      minute: 4,
+      minute: 5,
+      seconds: 0,
       fill: 0,
       solved: false
     };
   }
   componentDidMount() {
-    this.countFill();
-    this.countdownTimer();
-    this.countdownMinute();
+    this.circularProgress.animate(100, 300000, Easing.quad);
+    var time_in_minutes = 5;
+    var current_time = Date.parse(new Date());
+    var deadline = new Date(current_time + time_in_minutes * 60 * 1000);
+    console.log(deadline, "DDAY");
+    this.run_clock(deadline);
   }
   review = this.props.navigation.getParam("review", "default");
-  countFill() {
-    this.circularProgress.animate(100, 300000, Easing.quad);
-  }
-
-  countdownTimer() {
-    clearInterval(timer);
-    var timer = setInterval(() => {
-      if (!this.state.remainingTime) {
-        clearInterval(timer);
-        return false;
-      }
-      if (this.state.remainingTime < 2 && this.state.minute != 0) {
+  run_clock = deadline => {
+    clearInterval(timeinterval);
+    var timeinterval = setInterval(() => {
+      var t = Date.parse(deadline) - Date.parse(new Date());
+      var seconds = Math.floor((t / 1000) % 60);
+      var minutes = Math.floor((t / 1000 / 60) % 60);
+      if (seconds >= 0 && minutes >= 0) {
         this.setState({
-          remainingTime: 60
+          minute: minutes,
+          seconds: seconds
         });
       }
-      this.setState({
-        remainingTime: this.state.remainingTime - 1
-      });
     }, 1000);
-  }
-  countdownMinute() {
-    clearInterval(minute);
-    var minute = setInterval(() => {
-      if (!this.state.minute) {
-        clearInterval(minute);
-        return false;
-      }
-      this.setState(prevState => {
-        return { minute: prevState.minute - 1 };
-      });
-    }, 60000);
-  }
+  };
+
   handleUncalled = () => {
     this.postAdgs();
     this.props.navigation.navigate("Uncalled");
   };
   async postAdgs() {
     const token = await AsyncStorage.getItem("id_token");
-    console.log("TOKEN_ADGS", token);
+    console.log("TOKEN_ADGS", token, this.review);
     axios
       .post(
         base_url + "/api/review/sendtoadgs/" + this.review,
@@ -83,6 +70,8 @@ export default class WaitForResponse extends React.Component {
       });
   }
   render() {
+    const { minute, seconds, fill, solved } = this.state;
+    firebase.analytics().setCurrentScreen("timer");
     return (
       <View style={StylePanel.container}>
         <View style={styles.upView}>
@@ -92,22 +81,22 @@ export default class WaitForResponse extends React.Component {
             size={250}
             width={18}
             rotation={0}
-            fill={this.state.fill}
+            fill={fill}
             tintColor={Theme.colors.yellow}
             backgroundColor={Theme.colors.gray26}
           >
             {() => (
               <Text style={styles.timeTxt}>
-                0{this.state.minute}:{this.state.remainingTime < 10 ? 0 : null}
-                {this.state.remainingTime}
+                0{minute}:{seconds < 10 ? 0 : null}
+                {seconds}
               </Text>
             )}
           </AnimatedCircularProgress>
         </View>
         <View style={styles.downView}>
-          {this.state.remainingTime === 0 && this.state.minute === 0 ? (
+          {seconds === 0 && minute === 0 ? (
             <View styles={styles.subDownView}>
-              {this.state.solved ? (
+              {solved ? (
                 <React.Fragment>
                   <Text style={styles.subDownTxt}>Решили вопрос?</Text>
                   <View
@@ -141,7 +130,7 @@ export default class WaitForResponse extends React.Component {
                     </TouchableOpacity>
                     <TouchableOpacity
                       style={styles.sendBtnNo}
-                      onPress={() => this.handleUncalled()}
+                      onPress={() => this.setState({ solved: true })}
                     >
                       <Text style={styles.sendBtnTxtNo}>Нет</Text>
                     </TouchableOpacity>
@@ -153,7 +142,8 @@ export default class WaitForResponse extends React.Component {
             <View styles={styles.subDownView}>
               <Text style={styles.subDownTxt}>Ваша жалоба принята!</Text>
               <Text style={styles.waitTxt}>
-                Дождитесь 5 минут, чтобы получить ответ от представителей ЦОНа.
+                Пожалуйста, дождитесь звонка от представителя учреждение. Жалоба
+                направлена в ситуационный центр.
               </Text>
             </View>
           )}
@@ -189,11 +179,13 @@ const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "row",
     marginHorizontal: "5%"
   },
   timeTxt: {
     fontSize: 36,
     color: Theme.colors.yellow,
+    fontFamily: Platform.OS === "android" ? "sans-serif-light" : undefined,
     fontWeight: "200"
   },
   subDownTxt: {
@@ -202,6 +194,7 @@ const styles = StyleSheet.create({
     color: Theme.colors.yellow,
     width: "90%",
     marginHorizontal: "5%",
+    fontFamily: Platform.OS === "android" ? "sans-serif-light" : undefined,
     fontWeight: "100"
   },
   waitTxt: {

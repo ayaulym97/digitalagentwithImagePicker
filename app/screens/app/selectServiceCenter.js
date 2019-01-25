@@ -1,53 +1,72 @@
-import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  AsyncStorage,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
-import axios from 'axios';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { Theme } from '../../uitls/theme';
-import { StylePanel } from '../../uitls/styles';
-import { Footer, SearchInput} from '../../components';
-import { base_url } from '../../config/const';
+import React, { Component } from "react";
+import { AsyncStorage } from "react-native";
+import axios from "axios";
+import { SelectPage } from "../../components";
+import { base_url } from "../../config/const";
 export default class SelectServiceCenter extends Component {
   state = {
-    searchTxt: '',
+    searchTxt: "",
+    api: ""
   };
-  district = this.props.navigation.getParam('district', 'default');
+
+  vedom = this.props.navigation.getParam("vedom", "default");
+  district = this.props.navigation.getParam("district", "default");
   async componentDidMount() {
-    const token = await AsyncStorage.getItem('id_token');
-    console.log('TOKEN', token);
-    console.log('District', this.district);
+    switch (this.vedom) {
+      case "con":
+        this.setState({
+          api: `/api/con/byregion/`
+        });
+        break;
+      case "kgd":
+        this.setState({
+          api: `/api/kgd/`
+        });
+        break;
+      case "mtszn":
+        this.setState({
+          api: `/api/mtszn/`
+        });
+        break;
+
+      default:
+        break;
+    }
+    const token = await AsyncStorage.getItem("id_token");
+    console.log("TOKEN", token);
+    console.log("District", this.district);
     try {
       axios
-        .get(base_url + `/api/con/byregion/` + this.district, {
-          headers: { Authorization: token },
+        .get(base_url + this.state.api + this.district, {
+          headers: { Authorization: token }
         })
         .then(res => {
-          console.log('CON', res.data.cons);
-          const cons = res.data.cons;
-          this.setState({ cons });
+          console.log("CON", res);
+          if (this.vedom === "con") {
+            this.setState({ cons: res.data.cons });
+          } else {
+            this.setState({ cons: res.data });
+          }
         });
     } catch (error) {
-      console.log('err', error);
+      console.log("err", error);
     }
   }
   handleSearchBar = searchTxt => {
     this.setState({
-      searchTxt,
+      searchTxt
     });
-    console.log('42', searchTxt);
+    console.log("42", searchTxt);
   };
   handleServiceCenter = item => {
-    console.log('CON_ID', item._id);
-    this.props.navigation.navigate('Estimate', { cons: item });
+    console.log("CON_ID", item._id);
+    this.props.navigation.navigate("Estimate", {
+      cons: item,
+      vedom: this.vedom
+    });
   };
   render() {
+    console.log("VEDOMS", this.vedom);
     var data = this.state.cons;
     var searchString = this.state.searchTxt.trim().toLowerCase();
     if (searchString.length > 0) {
@@ -56,62 +75,16 @@ export default class SelectServiceCenter extends Component {
       });
     }
     return (
-      <View style={StylePanel.selectContainer}>
-        <View style={ StylePanel.upView}>
-          <SearchInput
-            value={this.state.searchTxt}
-            onChangeText={searchTxt => this.handleSearchBar(searchTxt)}
-          />
-
-          <Text style={StylePanel.header}>Выберите ЦОН</Text>
-        </View>
-        <View style={StylePanel.downView}>
-          {data ? (
-            
-            <FlatList
-              data={data}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.cityContainer}
-                  onPress={() => this.handleServiceCenter(item)}>
-                  <Text 
-                  style={styles.cityTxt}
-                  >{item.name}</Text>
-                  <Icon
-                    name={'ios-arrow-forward'}
-                    size={24}
-                    color={Theme.colors.gray63}
-                  />
-                </TouchableOpacity>
-              )}
-            />
-          ) : (
-            <ActivityIndicator size="large" color={Theme.colors.yellow} />
-          )}
-        </View>
-        <Footer footerStyle={StylePanel.footerStyle} />
-      </View>
+      <SelectPage
+      type={"center"}
+      vedom={this.vedom}
+        advanced={true}
+        searchTxt={this.state.searchTxt}
+        onChangeSearchTxt={searchTxt => this.handleSearchBar(searchTxt)}
+        header="Выберите учреждение"
+        data={data}
+        onPressCity={item => this.handleServiceCenter(item)}
+      />
     );
   }
 }
-const styles = StyleSheet.create({
-  upView: {
-    flex: 1,
-  },
-  cityContainer: {
-    width: '92%',
-    marginHorizontal: '4%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: Theme.colors.gray42,
-  },
-  cityTxt: {
-    width:"95%",
-    color: 'white',
-    fontSize: Theme.fonts.sizes.p6,
-  },
-});

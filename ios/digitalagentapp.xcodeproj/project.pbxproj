@@ -20,14 +20,12 @@
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2BC029B82BD44928A6EFB20E /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EDA17A128F84302AF129912 /* libRNSVG.a */; };
 		2CDFCC932EB0B79AE81213DA /* libPods-digitalagentapp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B92E76660260A69D396BF7B4 /* libPods-digitalagentapp-tvOS.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */; };
@@ -42,6 +40,7 @@
 		367F482D05D4474EA04DADA6 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7FAB9EF6AE34CCCAF68871D /* Foundation.ttf */; };
 		3B1DFFFA50BC43DDACAFE56E /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5423844FA97C4E91BBB9EA2D /* FontAwesome5_Brands.ttf */; };
 		3F794DDAED894F94BB577C67 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C32BB6F8730147109E7F4EC6 /* Ionicons.ttf */; };
+		41B5714221FB0A9500D28BE6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41B5714121FB0A9500D28BE6 /* Images.xcassets */; };
 		4E9C3FE6F8DA45D38CD35241 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA5B2E684CF24EEEBE943773 /* AntDesign.ttf */; };
 		51DC13A8A34644EEBC13B18D /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 283962E1D3514F2EA7A21B37 /* EvilIcons.ttf */; };
 		536C9532C2E38FECD8A8BE63 /* libPods-digitalagentapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD05C7FE3B90C3AD85592F6 /* libPods-digitalagentapp.a */; };
@@ -403,7 +402,6 @@
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = digitalagentapp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = digitalagentapp/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = digitalagentapp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = digitalagentapp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = digitalagentapp/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
@@ -417,6 +415,7 @@
 		3427FD18564446268FE1DDC0 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		3730E0A9499459BAEF92B0FB /* libPods-digitalagentappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-digitalagentappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2032BB700A4604780EF6FA /* Pods-digitalagentappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digitalagentappTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-digitalagentappTests/Pods-digitalagentappTests.debug.xcconfig"; sourceTree = "<group>"; };
+		41B5714121FB0A9500D28BE6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../digitalagentappsss/ios/digitalagentapp/Images.xcassets; sourceTree = "<group>"; };
 		42A50496342AE490F7702204 /* Pods-digitalagentapp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digitalagentapp-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-digitalagentapp-tvOS/Pods-digitalagentapp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		5058AFAD8A068FFE8CC1523E /* Pods-digitalagentapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-digitalagentapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-digitalagentapp/Pods-digitalagentapp.release.xcconfig"; sourceTree = "<group>"; };
 		5423844FA97C4E91BBB9EA2D /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
@@ -598,7 +597,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				41B5714121FB0A9500D28BE6 /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -1318,7 +1317,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				4E9C3FE6F8DA45D38CD35241 /* AntDesign.ttf in Resources */,
 				D7F1E5D8E7414E7EA2D0BBEC /* Entypo.ttf in Resources */,
@@ -1327,6 +1325,7 @@
 				E2743576EF1E45B887561A2D /* FontAwesome.ttf in Resources */,
 				3B1DFFFA50BC43DDACAFE56E /* FontAwesome5_Brands.ttf in Resources */,
 				FC819F49E161415BB5FA61F7 /* FontAwesome5_Regular.ttf in Resources */,
+				41B5714221FB0A9500D28BE6 /* Images.xcassets in Resources */,
 				061D5C6E8A8E40D68CFF6E87 /* FontAwesome5_Solid.ttf in Resources */,
 				367F482D05D4474EA04DADA6 /* Foundation.ttf in Resources */,
 				3F794DDAED894F94BB577C67 /* Ionicons.ttf in Resources */,
@@ -1342,7 +1341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,8 +1365,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellPath = /bin/bash;
+			shellScript = "export NODE_BINARY=$(which node)\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;

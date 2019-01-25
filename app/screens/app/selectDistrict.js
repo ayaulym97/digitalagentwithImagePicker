@@ -3,24 +3,25 @@ import { AsyncStorage } from "react-native";
 import axios from "axios";
 import { SelectPage } from "../../components";
 import { base_url } from "../../config/const";
-export default class SelectDistrict extends Component {
+export default class SelectDistricts extends Component {
   state = {
     searchTxt: ""
   };
   city = this.props.navigation.getParam("city", "default");
+  vedom = this.props.navigation.getParam("vedom", "default");
   async componentDidMount() {
     const token = await AsyncStorage.getItem("id_token");
-    console.log("TOKEN", token);
-    console.log("City", this.city);
+    this.setState({ token });
+    const {districts } = this.state;
+
     try {
       axios
-        .get(base_url + `/api/region/bycity/` + this.city, {
+        .get(base_url + `/api/region/bycity/` + this.vedom + "/" + this.city, {
           headers: { Authorization: token }
         })
         .then(res => {
-          console.log("CITY", res.data.regions);
-          const regions = res.data.regions;
-          this.setState({ regions });
+          this.setState({ districts: res.data.regions });
+          console.log("districts", districts);
         });
     } catch (error) {
       console.log("err", error);
@@ -34,11 +35,15 @@ export default class SelectDistrict extends Component {
     console.log("RER", searchTxt);
   };
   handleDistrict = item => {
-    this.props.navigation.navigate("SelectServiceCenter", { district: item });
+    this.props.navigation.navigate("SelectServiceCenter", {
+      district: item,
+      vedom: this.vedom
+    });
   };
   render() {
-    var data = this.state.regions;
-    var searchString = this.state.searchTxt.trim().toLowerCase();
+    const { districts, searchTxt } = this.state;
+    var data = districts;
+    var searchString = searchTxt.trim().toLowerCase();
     if (searchString.length > 0) {
       data = data.filter(i => {
         return i.name.toLowerCase().match(searchString);
@@ -46,7 +51,9 @@ export default class SelectDistrict extends Component {
     }
     return (
       <SelectPage
-        searchTxt={this.state.searchTxt}
+        type={"district"}
+        vedom={this.vedom}
+        searchTxt={searchTxt}
         onChangeSearchTxt={searchTxt => this.handleSearchBar(searchTxt)}
         header="Выберите район"
         data={data}

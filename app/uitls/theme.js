@@ -1,21 +1,19 @@
-import { scale } from './index';
-
+import { scale } from "./index";
 const FontBaseValue = scale(18);
-
 export const Theme = {
   colors: {
-    gray26:"#262626",
-    gray42:"#424242",
-    gray63:'#636363',
-    gray74:"#747474",
-    bcground: '#2B2B2B',
-    yellow: '#FCB415',
-    green:"#4caf50",
-    checkboxGray:'#373737'
+    gray26: "#262626",
+    gray42: "#424242",
+    gray63: "#636363",
+    gray74: "#747474",
+    bcground: "#2B2B2B",
+    yellow: "#FCB415",
+    green: "#4caf50",
+    checkboxGray: "#373737"
   },
   fonts: {
     sizes: {
-      h1:scale(28),
+      h1: scale(28),
       h2: scale(26),
       h3: scale(24),
       h4: scale(22),
@@ -32,11 +30,11 @@ export const Theme = {
       medium: FontBaseValue,
       large: FontBaseValue * 1.2,
       xlarge: FontBaseValue / 0.75,
-      xxlarge: FontBaseValue * 1.6,
+      xxlarge: FontBaseValue * 1.6
     },
     lineHeights: {
       medium: 18,
-      big: 24,
-    },
-  },
+      big: 24
+    }
+  }
 };

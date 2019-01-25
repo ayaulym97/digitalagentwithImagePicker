@@ -1,0 +1,10 @@
+{
+    "login": {
+      "welcome": "керемет",
+      "login_button": "керемет",
+      "signup_button": "керемет"
+    },
+    "user_profile": {
+      "title": "керемет"  
+    }
+  }
